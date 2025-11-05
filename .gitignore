@@ -1,0 +1,10 @@
+# Antora build output
+build/
+.cache/
+node_modules/
+
+# Editor files
+.DS_Store
+.idea/
+*.swp
+*~

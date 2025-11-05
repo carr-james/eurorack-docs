@@ -1,0 +1,34 @@
+site:
+  title: Eurorack Documentation
+  url: https://carr-james.github.io/eurorack-docs
+  start_page: ROOT::index.adoc
+
+content:
+  sources:
+    # CEM3340 VCO Module
+    - url: https://github.com/carr-james/cem3340-vco.git
+      branches: [dev, 'v*']
+      start_path: docs
+
+    # Future modules can be added here
+    # - url: https://github.com/carr-james/quad-vca-mixer.git
+    #   branches: [main, dev, 'v*']
+    #   start_path: docs
+
+ui:
+  bundle:
+    url: https://gitlab.com/antora/antora-ui-default/-/jobs/artifacts/HEAD/raw/build/ui-bundle.zip?job=bundle-stable
+    snapshot: true
+  supplemental_files: ./supplemental-ui
+
+urls:
+  latest_version_segment: stable
+  latest_version_segment_strategy: redirect:to
+
+antora:
+  extensions:
+    - '@antora/collector-extension'
+
+runtime:
+  fetch: true
+  cache_dir: ./.cache/antora

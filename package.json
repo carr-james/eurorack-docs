@@ -1,0 +1,24 @@
+{
+  "name": "eurorack-docs",
+  "version": "1.0.0",
+  "description": "Unified documentation site for Eurorack DIY modules",
+  "private": true,
+  "scripts": {
+    "build": "antora antora-playbook.yml",
+    "build:fetch": "antora --fetch antora-playbook.yml",
+    "serve": "cd build/site && python3 -m http.server 8000"
+  },
+  "dependencies": {
+    "@antora/cli": "^3.1.9",
+    "@antora/site-generator": "^3.1.9",
+    "@antora/collector-extension": "^1.0.0-alpha.3"
+  },
+  "keywords": [
+    "antora",
+    "documentation",
+    "eurorack",
+    "synthesizer",
+    "diy"
+  ],
+  "license": "MIT"
+}
