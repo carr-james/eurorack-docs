@@ -10,10 +10,12 @@ content:
       branches: [dev, 'v*']
       start_path: docs
 
+    # Quad VCA Mixer Module
+    - url: https://github.com/carr-james/quad-vca-mixer.git
+      branches: [dev, 'v*']
+      start_path: docs
+
     # Future modules can be added here
-    # - url: https://github.com/carr-james/quad-vca-mixer.git
-    #   branches: [main, dev, 'v*']
-    #   start_path: docs
 
 ui:
   bundle:
