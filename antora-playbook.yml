@@ -33,7 +33,8 @@ asciidoc:
 
 antora:
   extensions:
-    - '@antora/collector-extension'
+    - require: '@antora/collector-extension'
+      keep_worktrees: true
     - '@carr-james/eurorack-docs-ui/extensions/ibom-processor'
 
 runtime:
