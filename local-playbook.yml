@@ -1,0 +1,62 @@
+# Local Antora playbook for testing unified documentation with local components
+#
+# This playbook references local sibling directories instead of fetching from GitHub.
+# Allows testing changes locally before pushing to remote repositories.
+#
+# Directory structure expected:
+#   hardware/sdiy/
+#     ├── eurorack-docs/           (this directory)
+#     ├── eurorack-docs-ui/        (UI bundle and extensions)
+#     ├── cem3340-vco/             (component repository)
+#     └── quad-vca-mixer/          (component repository)
+#
+# To use:
+#   cd /home/icon0049/dev/hardware/sdiy/eurorack-docs
+#   npx antora local-playbook.yml
+#   python3 -m http.server 8000 --directory build/site
+
+site:
+  title: Eurorack Documentation (Local Preview)
+  url: http://localhost:8000
+  start_page: ROOT::index.adoc
+
+content:
+  sources:
+    # CEM3340 VCO Module (local)
+    - url: /cem3340-vco
+      branches: HEAD
+      start_path: docs
+
+    # Quad VCA Mixer Module (local)
+    - url: /quad-vca-mixer
+      branches: HEAD
+      start_path: docs
+
+    # Future modules can be added here
+
+ui:
+  bundle:
+    url: https://github.com/carr-james/eurorack-docs-ui/releases/download/latest/ui-bundle.zip
+    snapshot: true
+  supplemental_files: ./supplemental-ui
+
+urls:
+  latest_version_segment: stable
+  latest_version_segment_strategy: redirect:to
+
+asciidoc:
+  extensions:
+    - '@carr-james/eurorack-docs-ui/extensions/ibom-block-antora'
+
+antora:
+  extensions:
+    - '@carr-james/eurorack-docs-ui/extensions/collector-cache-extension'
+    - require: '@antora/collector-extension'
+      keep_worktrees: true
+    - '@carr-james/eurorack-docs-ui/extensions/ibom-processor'
+
+runtime:
+  fetch: false  # Don't fetch from remote - use local directories
+  cache_dir: ./.cache/antora
+  log:
+    level: info

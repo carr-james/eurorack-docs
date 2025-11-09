@@ -4,15 +4,16 @@
   "description": "Unified documentation site for Eurorack DIY modules",
   "private": true,
   "scripts": {
-    "build": "antora antora-playbook.yml",
-    "build:fetch": "antora --fetch antora-playbook.yml",
-    "serve": "cd build/site && python3 -m http.server 8000"
+    "docs:local": "eurorack-build --playbook local-playbook.yml --mount ../cem3340-vco:/cem3340-vco --mount ../quad-vca-mixer:/quad-vca-mixer",
+    "docs:remote": "eurorack-build --playbook antora-playbook.yml",
+    "docs:clean": "rm -rf build .cache",
+    "docs:preview": "cd build/site && python3 -m http.server 8000"
   },
   "dependencies": {
     "@antora/cli": "^3.1.9",
-    "@antora/site-generator": "^3.1.9",
     "@antora/collector-extension": "^1.0.0-alpha.3",
-    "@carr-james/eurorack-docs-ui": "^1.0.0"
+    "@antora/site-generator": "^3.1.9",
+    "@carr-james/eurorack-docs-ui": "^1.5.0"
   },
   "keywords": [
     "antora",

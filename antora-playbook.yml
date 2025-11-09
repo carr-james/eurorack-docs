@@ -33,6 +33,7 @@ asciidoc:
 
 antora:
   extensions:
+    - '@carr-james/eurorack-docs-ui/extensions/collector-cache-extension'
     - require: '@antora/collector-extension'
       keep_worktrees: true
     - '@carr-james/eurorack-docs-ui/extensions/ibom-processor'
@@ -40,3 +41,5 @@ antora:
 runtime:
   fetch: true
   cache_dir: ./.cache/antora
+  log:
+    level: info
