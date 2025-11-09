@@ -36,6 +36,16 @@ jobs:
       - name: Install Antora dependencies
         run: npm ci
 
+      - name: Restore Collector Cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            .cache/antora/collector
+            .cache/antora/collector-cache
+          key: collector-${{ hashFiles('**/hardware/**/*.kicad_pcb', '**/hardware/**/*.kicad_sch') }}
+          restore-keys: |
+            collector-
+
       - name: Build Antora site
         run: |
           npx antora --fetch antora-playbook.yml
