@@ -1,10 +1,14 @@
 site:
-  title: Eurorack Documentation
+  title: Carr Bytes Eurorack
   url: https://carr-james.github.io/eurorack-docs
   start_page: ROOT::index.adoc
 
 content:
   sources:
+    # Home/Landing Page Component
+    - url: .
+      start_path: docs
+
     # CEM3340 VCO Module
     - url: https://github.com/carr-james/cem3340-vco.git
       branches: [dev, 'v*']
@@ -21,13 +25,21 @@ ui:
   bundle:
     url: https://github.com/carr-james/eurorack-docs-ui/releases/download/latest/ui-bundle.zip
     snapshot: true
-  supplemental_files: ./supplemental-ui
+  supplemental_files:
+    - path: ui.yml
+      contents: |
+        static_files:
+        - .nojekyll
+    - path: .nojekyll
 
 urls:
   latest_version_segment: stable
   latest_version_segment_strategy: redirect:to
 
 asciidoc:
+  attributes:
+    public-build: ''
+    show-wip-warnings: ''
   extensions:
     - '@carr-james/eurorack-docs-ui/extensions/ibom-block-antora'
 

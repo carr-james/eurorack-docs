@@ -16,12 +16,16 @@
 #   python3 -m http.server 8000 --directory build/site
 
 site:
-  title: Eurorack Documentation (Local Preview)
+  title: Carr Bytes Eurorack (Preview)
   url: http://localhost:8000
   start_page: ROOT::index.adoc
 
 content:
   sources:
+    # Home/Landing Page Component
+    - url: .
+      start_path: docs
+
     # CEM3340 VCO Module (local)
     - url: /cem3340-vco
       branches: HEAD
@@ -36,15 +40,17 @@ content:
 
 ui:
   bundle:
-    url: https://github.com/carr-james/eurorack-docs-ui/releases/download/latest/ui-bundle.zip
+    url: /eurorack-docs-ui/build/ui-bundle.zip
     snapshot: true
-  supplemental_files: ./supplemental-ui
 
 urls:
   latest_version_segment: stable
   latest_version_segment_strategy: redirect:to
 
 asciidoc:
+  attributes:
+    show-wip-warnings: ''
+    dev-build: ''
   extensions:
     - '@carr-james/eurorack-docs-ui/extensions/ibom-block-antora'
 

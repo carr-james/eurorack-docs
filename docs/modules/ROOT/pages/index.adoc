@@ -1,0 +1,51 @@
+= Eurorack DIY Module Documentation
+
+ifdef::show-wip-warnings[]
+[NOTE]
+====
+**Development Build**
+
+You are viewing a development build of this documentation. Some modules may be incomplete or untested. Status warnings are shown for each module below.
+====
+endif::[]
+
+Welcome to the documentation for my collection of DIY Eurorack synthesizer modules.
+
+== Available Modules
+
+=== xref:cem3340-vco::index.adoc[CEM3340 VCO]
+
+A voltage-controlled oscillator based on the classic CEM3340 chip. My first module build, cloned from the https://github.com/kassu/kassutronics/tree/master/documentation/VCO%203340[Kassutronics VCO 3340].
+
+ifdef::show-wip-warnings[]
+_Status: Tested - Documentation and front panel in progress_
+endif::[]
+
+=== xref:quad-vca-mixer::index.adoc[Quad VCA Mixer]
+
+A four-channel voltage-controlled amplifier and mixer module, cloned from https://musicfromouterspace.com/analogsynth_new/DUALVCA/DLLVCA001.html[Ray Wilson's Dual Log/Linear VCA]. I expanded it from two to four VCAs, added LED output indicators, and included a mixer that normalizes the other three VCA outputs to the fourth jack.
+
+ifdef::show-wip-warnings[]
+_Status: Untested - PCBs fabricated but not assembled_
+endif::[]
+
+== Getting Started
+
+Each module has its own documentation including:
+
+* Assembly instructions
+* Bill of materials (BOM)
+* Interactive schematics
+* PCB layouts
+* Calibration procedures
+
+Select a module above to get started.
+
+== About This Project
+
+This is a personal passion project documenting my journey building a DIY Eurorack synthesizer. I'm sharing my work in case it's useful to others interested in synth DIY.
+
+A quick disclaimer: I'm not an electronics expert. While I studied electrical engineering years ago, I've forgotten most of it and am essentially relearning as I go. My day job is in software engineering, which has helped me set up automation for this project—including this documentation site and automated PCB gerber generation.
+
+The modules documented here are heavily inspired by (or direct clones of) other publicly available designs. You'll find links to the original sources in each module's documentation, as that's where the real credit belongs.
+

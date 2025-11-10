@@ -1,0 +1,5 @@
+name: ROOT
+title: Carr Bytes Eurorack
+version: ~
+nav:
+- modules/ROOT/nav.adoc
