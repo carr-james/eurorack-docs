@@ -42,11 +42,32 @@ jobs:
           path: |
             .cache/antora/collector
             .cache/antora/collector-cache
-          key: collector-${{ hashFiles('**/hardware/**/*.kicad_pcb', '**/hardware/**/*.kicad_sch') }}
+          key: collector-${{ github.run_number }}
           restore-keys: |
             collector-
 
+      - name: Inspect cache directories
+        run: |
+          echo "=== Cache Directory Overview ==="
+          ls -lah .cache/ 2>/dev/null || echo "No .cache directory"
+          echo ""
+          echo "=== Collector Directory ==="
+          ls -lah .cache/antora/collector/ 2>/dev/null || echo "No collector directory"
+          echo ""
+          echo "=== Collector Worktrees ==="
+          find .cache/antora/collector/ -maxdepth 1 -type d 2>/dev/null | while read dir; do
+            if [ "$dir" != ".cache/antora/collector/" ]; then
+              echo "Worktree: $dir"
+              ls -la "$dir" 2>/dev/null | head -20
+              echo ""
+            fi
+          done
+          echo "=== Collector Cache Directory ==="
+          du -sh .cache/antora/collector-cache/* 2>/dev/null || echo "No collector-cache directory"
+
       - name: Build Antora site
+        env:
+          BLENDER_SAMPLES: 10
         run: |
           npx antora --fetch antora-playbook.yml
           echo "=== Build Output ==="

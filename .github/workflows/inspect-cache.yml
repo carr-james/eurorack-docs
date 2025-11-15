@@ -1,0 +1,69 @@
+name: Inspect Collector Cache
+
+on:
+  workflow_dispatch:
+    inputs:
+      run_number:
+        description: 'Run number to inspect (e.g., 25)'
+        required: true
+        type: string
+
+jobs:
+  inspect-cache:
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/carr-james/eurorack-docker:latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Restore Collector Cache
+        id: cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            .cache/antora/collector
+            .cache/antora/collector-cache
+          key: collector-${{ inputs.run_number }}
+          restore-keys: |
+            collector-
+
+      - name: List cache contents
+        run: |
+          echo "=== Cache Restore Status ==="
+          echo "Cache hit: ${{ steps.cache.outputs.cache-hit }}"
+          echo ""
+          echo "=== Pointer Files (Hashes) ==="
+          find .cache/antora/collector-cache/hashes/ -name "*.json" 2>/dev/null | while read f; do
+            echo "File: $f"
+            cat "$f" | head -20
+            echo ""
+          done || echo "No pointer files found"
+          echo ""
+          echo "=== Cached Output Directories ==="
+          ls -lah .cache/antora/collector-cache/outputs/ 2>/dev/null || echo "No outputs directory"
+          echo ""
+          echo "=== Cache Directory Structure ==="
+          ls -laR .cache/ 2>/dev/null || echo "No .cache directory found"
+          echo ""
+          echo "=== Cache Size ==="
+          du -sh .cache/ 2>/dev/null || echo "No .cache directory found"
+          echo ""
+          echo "=== File Count ==="
+          find .cache/ -type f 2>/dev/null | wc -l || echo "0"
+
+      - name: Create tarball of cache
+        run: |
+          tar -czf collector-cache.tar.gz .cache/
+          ls -lh collector-cache.tar.gz
+          echo "Tarball created successfully"
+
+      - name: Upload cache as artifact
+        uses: actions/upload-artifact@v4
+        if: success() || failure()
+        with:
+          name: collector-cache-inspection
+          path: collector-cache.tar.gz
+          retention-days: 7
+          if-no-files-found: warn

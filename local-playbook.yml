@@ -65,4 +65,4 @@ runtime:
   fetch: false  # Don't fetch from remote - use local directories
   cache_dir: ./.cache/antora
   log:
-    level: info
+    level: debug
