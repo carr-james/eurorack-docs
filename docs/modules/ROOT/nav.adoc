@@ -1,1 +1,5 @@
 * xref:index.adoc[Home]
+
+.Modules
+* xref:cem3340-vco::index.adoc[CEM3340 VCO]
+* xref:quad-vca-mixer::index.adoc[Quad VCA Mixer]

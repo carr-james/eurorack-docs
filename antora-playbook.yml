@@ -40,6 +40,7 @@ asciidoc:
   attributes:
     public-build: ''
     show-wip-warnings: ''
+    page-pagination: ''
   extensions:
     - '@carr-james/eurorack-docs-ui/extensions/ibom-block-antora'
 

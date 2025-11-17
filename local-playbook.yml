@@ -49,6 +49,7 @@ urls:
 
 asciidoc:
   attributes:
+    page-pagination: ''
     show-wip-warnings: ''
     dev-build: ''
   extensions:
